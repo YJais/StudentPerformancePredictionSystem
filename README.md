@@ -1,166 +1,329 @@
 # 🎓 AI-Based Student Performance Prediction System
 
-### Hybrid Stacking Ensemble Learning · Streamlit · Plotly · XGBoost
+> **Hybrid Stacking Ensemble Learning | Streamlit | XGBoost | Scikit-learn | Plotly**
 
-A premium, production-ready AI dashboard that predicts a student's final
-exam score using a **Hybrid Stacking Regressor** (Linear Regression +
-XGBoost → Linear Regression meta-learner), presented through a modern
-black & gold glassmorphism interface.
+<p align="center">
 
----
+![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-Deployed-red?style=for-the-badge&logo=streamlit)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-orange?style=for-the-badge&logo=scikitlearn)
+![XGBoost](https://img.shields.io/badge/XGBoost-Ensemble-success?style=for-the-badge)
+![Plotly](https://img.shields.io/badge/Plotly-Visualization-3f4f75?style=for-the-badge&logo=plotly)
 
-## 📖 Project Description
-
-This system predicts a student's **Final Exam Score** based on three key
-academic indicators:
-
-| Feature | Range |
-|---|---|
-| Attendance (%) | 0 – 100 |
-| Hours Studied (per day) | 0 – 24 |
-| Previous / Internal Score | 0 – 100 |
-
-The trained model is loaded from disk (`student_model.pkl` /
-`scaler.pkl`) and used **purely for inference** — no retraining happens
-inside the Streamlit application.
-
-The app returns:
-
-- ✅ Predicted Exam Score
-- ✅ Performance Category (Outstanding → Needs Improvement)
-- ✅ Natural-language Confidence Message
-- ✅ Personalized Recommendations
-- ✅ Four interactive Plotly visualizations (Bar, Gauge, Radar, Pie)
+</p>
 
 ---
 
-## 🧬 Machine Learning Pipeline
+# 🌐 Live Demo
 
-```
-Student Inputs
-      ↓
-Preprocessing (StandardScaler)
-      ↓
-Linear Regression   ─┐
-                      ├──►  Linear Regression (Meta Learner)
-XGBoost Regressor   ─┘
-      ↓
-Predicted Exam Score
-```
+### 🚀 Live Application
 
-**Base Learners:** Linear Regression, XGBoost Regressor
-**Meta Learner:** Linear Regression
-**Ensembling Strategy:** Stacking (`sklearn.ensemble.StackingRegressor`)
-
-Model performance on held-out synthetic test data: **R² ≈ 0.92**, **MAE ≈ 3.6 marks**.
+**https://studentperformanceprediction-p.streamlit.app**
 
 ---
 
-## 🗂️ Project Structure
+# 📖 Project Overview
 
+The **AI-Based Student Performance Prediction System** is a Machine Learning application that predicts a student's **Final Exam Score** using a **Hybrid Stacking Ensemble Regression** model.
+
+The project combines multiple regression algorithms to improve prediction accuracy and is deployed through an interactive **Streamlit Dashboard** featuring modern UI, real-time inference, personalized recommendations, and dynamic visualizations.
+
+---
+
+# 🎯 Problem Statement
+
+Accurately predicting student academic performance helps educators identify students requiring additional academic support while enabling students to understand the impact of study habits and academic indicators on their final examination scores.
+
+Traditional prediction methods often rely on a single machine learning algorithm, which may fail to capture both linear and non-linear relationships within educational datasets.
+
+This project addresses this limitation by employing a **Hybrid Stacking Ensemble Learning** approach that combines multiple predictive models to improve overall prediction performance.
+
+---
+
+# ✨ Features
+
+- Hybrid Stacking Ensemble Regression
+- Real-Time Student Performance Prediction
+- Premium Black & Gold Glassmorphism UI
+- Dynamic Plotly Visualizations
+- Personalized Study Recommendations
+- Performance Categorization
+- Responsive Dashboard
+- Production-Ready Streamlit Deployment
+- Clean and Modular Python Code
+
+---
+
+# 📊 Input Features
+
+The prediction model uses the following academic indicators.
+
+| Feature | Description | Range |
+|----------|-------------|-------|
+| Attendance | Student Attendance Percentage | 0 – 100% |
+| Hours Studied | Average Daily Study Hours | 0 – 24 |
+| Previous Scores | Previous/Internal Examination Score | 0 – 100 |
+| Sleep Hours | Average Daily Sleep Duration | 0 – 12 |
+| Tutoring Sessions | Number of Tutoring Sessions | 0 – 20 |
+
+---
+
+# 📈 Output
+
+The application predicts:
+
+- 🎯 Predicted Final Exam Score
+- 🏆 Performance Category
+- 💡 Personalized Recommendations
+- 📊 Interactive Dashboard
+- 📉 Dynamic Visualizations
+
+---
+
+# 🧠 Machine Learning Pipeline
+
+```text
+                    Student Inputs
+                           │
+                           ▼
+                Data Preprocessing
+                 (StandardScaler)
+                           │
+                           ▼
+      ┌────────────────────────────────────┐
+      │                                    │
+      ▼                                    ▼
+Linear Regression                 XGBoost Regressor
+(Base Learner 1)                  (Base Learner 2)
+      │                                    │
+      └──────────────┬─────────────────────┘
+                     ▼
+         Linear Regression
+            (Meta Learner)
+          passthrough=True
+                     │
+                     ▼
+       Predicted Final Exam Score
 ```
-student-performance/
+
+---
+
+# ⚙️ Ensemble Learning Strategy
+
+### Base Learners
+
+- Linear Regression
+- XGBoost Regressor
+
+### Meta Learner
+
+- Linear Regression
+
+### Ensemble Technique
+
+Stacking Regressor (`sklearn.ensemble.StackingRegressor`)
+
+### Passthrough
+
+Enabled (`passthrough=True`)
+
+The meta learner receives:
+
+- Predictions from Linear Regression
+- Predictions from XGBoost
+- Original Input Features
+
+allowing it to learn from both model predictions and the original feature space.
+
+---
+
+# 📊 Visualizations
+
+The dashboard provides interactive Plotly visualizations including:
+
+- 📊 Feature Comparison Bar Chart
+- 🎯 Predicted Score Gauge
+- 🕸 Student Performance Radar Chart
+- 📋 Prediction Summary Dashboard
+
+All visualizations are generated dynamically using the user inputs and model prediction.
+
+---
+
+# 📂 Project Structure
+
+```text
+StudentPerformancePredictionSystem/
 │
-├── app.py                # Streamlit inference application (main entry point)
-├── train_model.py        # Offline training script (produces the .pkl artifacts)
-├── student_model.pkl     # Pre-trained Hybrid Stacking Regressor
-├── scaler.pkl            # Fitted StandardScaler
-├── requirements.txt      # Python dependencies
-├── assets/
-│   └── images/           # Static image assets
-└── README.md             # Project documentation
+├── Dataset/
+│
+├── Notebook/
+│
+├── models/
+│   ├── student_model.pkl
+│   ├── scaler.pkl
+│   └── features.pkl
+│
+├── Streamlit_App/
+│   ├── app.py
+│   ├── requirements.txt
+│   └── assets/
+│
+├── Documentation/
+│
+└── README.md
 ```
 
 ---
 
-## ⚙️ Installation
-
-1. **Clone / extract the project**
-   ```bash
-   cd student-performance
-   ```
-
-2. **Create a virtual environment (recommended)**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate   # Windows: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
----
-
-## ▶️ Run Commands
-
-**Run the Streamlit dashboard:**
-```bash
-streamlit run app.py
-```
-
-The app will open automatically at `http://localhost:8501`.
-
-**(Optional) Regenerate the model artifacts:**
-```bash
-python train_model.py
-```
-This regenerates `student_model.pkl` and `scaler.pkl` from a fresh
-training run. The Streamlit app never needs to run this — it only
-loads the existing pickle files.
-
----
-
-## 🖼️ Screenshots
-
-> _Add screenshots of the running dashboard here._
-
-- `assets/images/hero.png` — Hero / landing section
-- `assets/images/result.png` — Prediction result & score card
-- `assets/images/charts.png` — Visualization dashboard
-- `assets/images/about.png` — About project page
-
----
-
-## 🛠️ Technology Stack
+# 💻 Technology Stack
 
 | Layer | Technology |
-|---|---|
-| Frontend / Dashboard | Streamlit (custom black & gold glassmorphism CSS) |
-| Visualization | Plotly (Bar, Gauge, Radar, Pie charts) |
-| Machine Learning | Scikit-learn, XGBoost |
+|--------|------------|
+| Programming Language | Python |
+| Dashboard | Streamlit |
+| Machine Learning | Scikit-learn |
+| Ensemble Learning | XGBoost |
+| Data Processing | Pandas, NumPy |
+| Visualization | Plotly |
 | Model Serialization | Pickle |
-| Language | Python 3.10+ |
 
 ---
 
-## ✨ Features
+# 🚀 Installation
 
-- Premium dark-themed, glassmorphic dashboard UI with subtle animations
-- Real-time inference using a pre-trained Hybrid Stacking Ensemble
-- Automatic performance categorization (6 tiers)
-- Personalized, rule-based recommendations
-- Four rich interactive Plotly visualizations
-- Sidebar navigation: Predict / About Project / Developer Info
-- Structured JSON-style backend response viewer
-- Fully cached model loading for fast repeated predictions
-- Clean, type-hinted, modular, production-ready Python code
+Clone the repository
 
----
+```bash
+git clone https://github.com/YJais/StudentPerformancePredictionSystem.git
+```
 
-## 🔭 Future Scope
+Move into the project directory
 
-- Integrate a real, larger-scale historical student dataset
-- Add authentication and per-student prediction history tracking
-- Support batch predictions via CSV upload
-- Add SHAP-based model explainability visualizations
-- Deploy as a REST API (FastAPI) alongside the Streamlit UI
-- Add multi-language support for the recommendation engine
-- Introduce time-series tracking of a student's performance trend
+```bash
+cd StudentPerformancePredictionSystem
+```
+
+Install dependencies
+
+```bash
+pip install -r Streamlit_App/requirements.txt
+```
 
 ---
 
-## 📜 License
+# ▶️ Run the Application
 
-This project is provided for educational and demonstration purposes.
+```bash
+streamlit run Streamlit_App/app.py
+```
+
+The application will be available at:
+
+```
+http://localhost:8501
+```
+
+---
+
+# 📷 Application Screenshots
+
+## 🏠 Home Dashboard
+
+> *(Add Screenshot Here)*
+
+---
+
+## 📊 Prediction Dashboard
+
+> *(Add Screenshot Here)*
+
+---
+
+## 📈 Interactive Charts
+
+> *(Add Screenshot Here)*
+
+---
+
+## ℹ️ About Project
+
+> *(Add Screenshot Here)*
+
+---
+
+# 📊 Model Performance
+
+| Metric | Value |
+|---------|-------|
+| MAE | 1.2761 |
+| MSE | 5.0817 |
+| RMSE | 2.2543 |
+| R² Score | 0.6405 |
+
+---
+
+# 🔮 Future Scope
+
+- Batch Prediction using CSV Upload
+- Student Authentication
+- Prediction History
+- Explainable AI (SHAP / LIME)
+- REST API using FastAPI
+- Database Integration
+- Multi-language Support
+- Mobile Responsive Dashboard
+- Cloud-based Model Monitoring
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+If you would like to improve this project:
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+# 👨‍💻 Developer
+
+## **Yash Raj Jaiswal**
+
+**B.Tech Computer Science & Engineering**
+
+Machine Learning • Artificial Intelligence • Full Stack Development
+
+### GitHub
+
+https://github.com/YJais
+
+### LinkedIn
+
+https://www.linkedin.com/in/yashraj27/
+
+---
+
+# 📚 Acknowledgements
+
+- Scikit-learn
+- XGBoost
+- Streamlit
+- Plotly
+- Pandas
+- NumPy
+- Kaggle Student Performance Factors Dataset
+
+---
+
+# 📄 License
+
+This project is developed for educational, research, and demonstration purposes.
+
+---
+
+⭐ If you found this project useful, consider giving it a **Star** on GitHub!
