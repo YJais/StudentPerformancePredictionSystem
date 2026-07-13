@@ -10,7 +10,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 st.set_page_config(
-    page_title="AI Student Performance Prediction",
+    page_title="Student Performance Prediction System",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -258,10 +258,6 @@ def load_artifacts() -> Dict[str, Any]:
 
     return {"model": model, "scaler": scaler, "features": features}
 
-
-# ======================================================================
-# BUSINESS LOGIC
-# ======================================================================
 
 def classify_performance(score: float) -> Dict[str, str]:
     """
@@ -535,7 +531,7 @@ def render_sidebar() -> str:
             <div style="text-align:center; padding: 10px 0 20px 0;">
                 <div style="font-size:3rem;">🎓</div>
                 <div style="font-size:1.3rem; font-weight:700; color:#FFD700;">
-                    AI Performance
+                    Student Performance
                 </div>
                 <div style="font-size:0.85rem; color:#aaaaaa; letter-spacing:1px;">
                     PREDICTION SYSTEM
@@ -572,7 +568,7 @@ def render_hero() -> None:
     st.markdown(
         """
         <div class="hero-container">
-            <div class="hero-title">🎓 AI Student Performance Prediction</div>
+            <div class="hero-title">🎓 Student Performance Prediction System</div>
             <div class="hero-subtitle">
                 Predict academic performance using Hybrid Ensemble Machine Learning.
             </div>
@@ -703,10 +699,6 @@ def render_result_section(result: PredictionResult, inputs: Dict[str, float]) ->
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # JSON Response (developer view)
-    # with st.expander("🧩 View Raw JSON Response (Backend Output)"):
-    #     st.json(build_json_response(result, inputs["attendance"], inputs["hours_studied"], inputs["previous_score"], inputs["sleeping_hours"], inputs["tutoring_sessions"]))
-
 
 def render_pipeline_diagram() -> None:
     st.markdown('<div class="glass-card">', unsafe_allow_html=True)
@@ -826,7 +818,7 @@ def render_developer_info() -> None:
     st.markdown(
         """
         <div style="line-height:2;">
-        <b style="color:#FFD700;">Project:</b> AI-Based Student Performance Prediction System<br>
+        <b style="color:#FFD700;">Project:</b> Student Performance Prediction System<br>
         <b style="color:#FFD700;">Architecture:</b> Hybrid Stacking Ensemble Learning<br>
         <b style="color:#FFD700;">Frontend:</b> Streamlit (Custom Glassmorphism UI)<br>
         <b style="color:#FFD700;">Visualization:</b> Plotly<br>
@@ -863,7 +855,7 @@ def render_footer() -> None:
     st.markdown(
         """
         <div class="footer">
-            © 2026 AI Student Performance Prediction System · Built with Streamlit, Plotly & Scikit-learn<br>
+            © 2026 Student Performance Prediction System · Built with Streamlit, Plotly & Scikit-learn<br>
             Powered by Hybrid Stacking Ensemble Learning
         </div>
         """,
