@@ -226,32 +226,6 @@ http://localhost:8501
 
 ---
 
-# 📷 Application Screenshots
-
-## 🏠 Home Dashboard
-
-> *(Add Screenshot Here)*
-
----
-
-## 📊 Prediction Dashboard
-
-> *(Add Screenshot Here)*
-
----
-
-## 📈 Interactive Charts
-
-> *(Add Screenshot Here)*
-
----
-
-## ℹ️ About Project
-
-> *(Add Screenshot Here)*
-
----
-
 # 📊 Model Performance
 
 | Metric | Value |
