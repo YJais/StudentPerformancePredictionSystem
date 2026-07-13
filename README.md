@@ -62,9 +62,9 @@ The prediction model uses the following academic indicators.
 |----------|-------------|-------|
 | Attendance | Student Attendance Percentage | 0 – 100% |
 | Hours Studied | Average Daily Study Hours | 0 – 24 |
-| Previous Scores | Previous/Internal Examination Score | 0 – 100 |
-| Sleep Hours | Average Daily Sleep Duration | 0 – 12 |
-| Tutoring Sessions | Number of Tutoring Sessions | 0 – 20 |
+| Previous Academic Scores Avg. | Previous Internal Examination Score and Assessment Score Average| 0 – 100 |
+| Sleep Hours | Average Daily Sleep Duration | 0 – 24 |
+| Tutoring Sessions | Total Hours of Tutoring Sessions per day | 0 – 20 |
 
 ---
 
