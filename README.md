@@ -1,4 +1,4 @@
-# 🎓 AI-Based Student Performance Prediction System
+# 🎓 Student Performance Prediction System
 
 > **Hybrid Stacking Ensemble Learning | Streamlit | XGBoost | Scikit-learn | Plotly**
 
