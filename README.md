@@ -18,7 +18,7 @@
 
 ### 🚀 Live Application
 
-**https://studentperformanceprediction-p.streamlit.app**
+**https://studentperformancepredictionsystem-p.streamlit.app**
 
 ---
 
