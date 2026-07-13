@@ -428,10 +428,6 @@ def build_json_response(
     }
 
 
-# ======================================================================
-# CHART BUILDERS (PLOTLY)
-# ======================================================================
-
 PLOTLY_TEMPLATE_LAYOUT = dict(
     paper_bgcolor="rgba(0,0,0,0)",
     plot_bgcolor="rgba(0,0,0,0)",
@@ -525,35 +521,6 @@ def build_radar_chart(attendance: float, hours_studied: float, previous_score: f
         **PLOTLY_TEMPLATE_LAYOUT,
     )
     return fig
-
-
-def build_pie_chart(predicted_category: str) -> go.Figure:
-    """Build a pie chart of performance category distribution, highlighting the predicted category."""
-    categories = ["Outstanding", "Excellent", "Very Good", "Good", "Average", "Needs Improvement"]
-    # Illustrative reference distribution across a typical cohort
-    colors = ["#00E676", "#FFD700", "#40C4FF", "#FFA726", "#FF7043", "#EF5350"]
-
-    pull = [0.12 if cat == predicted_category else 0 for cat in categories]
-
-    fig = go.Figure(
-        data=[
-            go.Pie(
-                labels=categories,
-                values=base_distribution,
-                pull=pull,
-                marker=dict(colors=colors, line=dict(color="#000000", width=2)),
-                textinfo="label+percent",
-                hole=0.35,
-            )
-        ]
-    )
-    fig.update_layout(
-        title=f"Performance Category Distribution (Highlighted: {predicted_category})",
-        showlegend=False,
-        **PLOTLY_TEMPLATE_LAYOUT,
-    )
-    return fig
-
 
 def render_sidebar() -> str:
     """
@@ -733,17 +700,12 @@ def render_result_section(result: PredictionResult, inputs: Dict[str, float]) ->
             ),
             use_container_width=True,
         )
-    with chart_col4:
-        st.plotly_chart(
-            build_pie_chart(result.performance_category),
-            use_container_width=True,
-        )
 
     st.markdown("</div>", unsafe_allow_html=True)
 
     # JSON Response (developer view)
-    with st.expander("🧩 View Raw JSON Response (Backend Output)"):
-        st.json(build_json_response(result, inputs["attendance"], inputs["hours_studied"], inputs["previous_score"], inputs["sleeping_hours"], inputs["tutoring_sessions"]))
+    # with st.expander("🧩 View Raw JSON Response (Backend Output)"):
+    #     st.json(build_json_response(result, inputs["attendance"], inputs["hours_studied"], inputs["previous_score"], inputs["sleeping_hours"], inputs["tutoring_sessions"]))
 
 
 def render_pipeline_diagram() -> None:
@@ -907,11 +869,6 @@ def render_footer() -> None:
         """,
         unsafe_allow_html=True,
     )
-
-
-# ======================================================================
-# MAIN APPLICATION
-# ======================================================================
 
 def main() -> None:
     """Application entry point."""
